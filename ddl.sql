@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS course;
 DROP TABLE IF EXISTS section;
 DROP TABLE IF EXISTS enrollment;
 DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS prereqCourse;
 
 CREATE TABLE student_record (
     cwid VARCHAR(255),
@@ -37,7 +38,7 @@ CREATE TABLE professor (
 );
 CREATE TABLE prof_degree (
     Prof_ssn VARCHAR(255),
-    degree VARCHAR(255),
+    degree VARCHAR(255)
 );
 
 CREATE TABLE course (
@@ -48,6 +49,12 @@ CREATE TABLE course (
     dnum VARCHAR(255),
     preqCnum VARCHAR(255)
 );
+
+CREATE TABLE prereqCourse (
+    cnum VARCHAR(255),
+    prereq VARCHAR(255)
+);
+
 CREATE TABLE section (
     cnum VARCHAR(255),
     snum VARCHAR(255),
@@ -75,33 +82,55 @@ CREATE TABLE department (
     chair_ssn VARCHAR(255)
 );
 
+
+--student tables-- 
+
+--INSERT INTO student_record VALUES ('cwid','fname','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1231','powder','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1232','jinx','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1233','vi','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1234','caitlyn','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1235','ekko','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1236','jayce','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1237','vander','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1238','isha','lname','phone','addy','majordno');
+
+--department tables--
+
+--INSERT INTO department VALUES ('dnum','dname','phone','location','chairssn');
+INSERT INTO department VALUES ('2244','compsci','951','ecs','2341');
+INSERT INTO department VALUES ('3366','math','401','mccarthy','2342');
+
+--professor tables--
+INSERT INTO professor VALUES ('2341','heimerdinger','dr','male','100k','951','123','123 way','fullerton','ca','92592');
+INSERT INTO professor VALUES ('2342','cheawon','dr','female','100k','951','124','124 way','fullerton','ca','92592');
+INSERT INTO professor VALUES ('2343','hanni','dr','female','100k','951','125','125 way','fullerton','ca','92592');
+
+--course tables--
+--INSERT INTO course VALUES ('cnum','title','textbook','unit','dnum','preqcnum');
+
+INSERT INTO course VALUES ('9999','database','database textbook','3','2244','none');
+INSERT INTO course VALUES ('9998','algo','algo textbook','3','2244','none');
+INSERT INTO course VALUES ('9997','stats','stats textbook','4','3366','none');
+INSERT INTO course VALUES ('9996','calc','calc textbook','4','3366','none');
+
+
+--sections--
+--INSERT INTO section VALUES ('cnum','snum','classroom','meeting days','seats','begintime','endtime','prof');
+INSERT INTO section VALUES ('9999','3','39','sudnay','30','10am','12pm','2341');
+INSERT INTO section VALUES ('9999','1','40','monday','35','10am','12pm','2341');
+INSERT INTO section VALUES ('9999','2','41','tuesday','35','10am','12pm','2341');
+INSERT INTO section VALUES ('9998','1','42','wednesday','35','10am','12pm','2342');
+INSERT INTO section VALUES ('9997','1','43','thursday','35','10am','12pm','2342');
+INSERT INTO section VALUES ('9996','1','44','friday','30','10am','12pm','2343');
+
+--enrollment record--
+
+--INSERT INTO enrollment VALUES ('cnum','snum','cwid','grade');
+INSERT INTO enrollment VALUES ('9999','3','1231','a');
+INSERT INTO enrollment VALUES ('9998','1','1232','b');
+
+
 --test for query b of student--
-INSERT INTO student_record VALUES ('1','9','9','9','9','9');
-
-INSERT INTO course VALUES ('1','database','3','4','5','6');
-INSERT INTO course VALUES ('2','algo','3','4','5','6');
-
-
-INSERT INTO enrollment VALUES ('1','9','1','a');
-INSERT INTO enrollment VALUES ('2','9','1','b');
 
 SELECT course.title, enrollment.grade FROM student_record, course, enrollment WHERE student_record.cwid = '1' and student_record.cwid = enrollment.cwid and enrollment.cnum = course.cnum;
-
-
-
-
-
-
-
-
---random student test--
-
-INSERT INTO student_record VALUES ('1','2','3','4','5','6');
-
-INSERT INTO department VALUES ('1','compsci','3','3','3');
-INSERT INTO department VALUES ('2','dog','3','3','3');
-
-INSERT INTO minor VALUES ('1','1');
-INSERT INTO minor VALUES ('1','2');
-
-SELECT dname FROM department, minor, student_record WHERE student_record.cwid = '$input' AND student_record.cwid = minor.cwid AND department.dnum = minor.dnum
