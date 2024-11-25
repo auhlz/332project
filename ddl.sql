@@ -117,7 +117,7 @@ INSERT INTO course VALUES ('9996','calc','calc textbook','4','3366','none');
 
 --sections--
 --INSERT INTO section VALUES ('cnum','snum','classroom','meeting days','seats','begintime','endtime','prof');
-INSERT INTO section VALUES ('9999','3','39','sudnay','30','10am','12pm','2341');
+INSERT INTO section VALUES ('9999','3','39','sunday','30','10am','12pm','2341');
 INSERT INTO section VALUES ('9999','1','40','monday','35','10am','12pm','2341');
 INSERT INTO section VALUES ('9999','2','41','tuesday','35','10am','12pm','2341');
 INSERT INTO section VALUES ('9998','1','42','wednesday','35','10am','12pm','2342');
@@ -134,3 +134,7 @@ INSERT INTO enrollment VALUES ('9998','1','1232','b');
 --test for query b of student--
 
 SELECT course.title, enrollment.grade FROM student_record, course, enrollment WHERE student_record.cwid = '1' and student_record.cwid = enrollment.cwid and enrollment.cnum = course.cnum;
+
+--test query for a of prof--
+
+SELECT course.title, section.classroom, section.meeting_days, section.begin_time, section.end_time FROM course, section WHERE section.prof_ssn = '2341' and section.cnum=course.cnum;
