@@ -128,9 +128,13 @@ INSERT INTO section VALUES ('9996','1','44','friday','30','10am','12pm','2343');
 
 --INSERT INTO enrollment VALUES ('cnum','snum','cwid','grade');
 INSERT INTO enrollment VALUES ('9999','3','1231','a');
+INSERT INTO enrollment VALUES ('9999','3','1233','a');
+INSERT INTO enrollment VALUES ('9999','3','1234','a');
 INSERT INTO enrollment VALUES ('9998','1','1232','b');
 
+--test for query a of student--
 
+SELECT section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time, COUNT(*) AS student_count FROM section, enrollment WHERE section.cnum = '9999' AND enrollment.snum = section.snum GROUP BY section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time;
 --test for query b of student--
 
 SELECT course.title, enrollment.grade FROM student_record, course, enrollment WHERE student_record.cwid = '1' and student_record.cwid = enrollment.cwid and enrollment.cnum = course.cnum;
