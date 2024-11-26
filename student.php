@@ -6,7 +6,7 @@
         echo $_POST['cnum'];
         $input = $_POST['cnum'];
         $query = "SELECT section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time, COUNT(*) AS student_count 
-                    FROM section, enrollment WHERE section.cnum = '9999' AND enrollment.snum = section.snum 
+                    FROM section, enrollment WHERE section.cnum = '$input' AND enrollment.snum = section.snum 
                     GROUP BY section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time";
 
 
