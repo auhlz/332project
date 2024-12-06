@@ -2,7 +2,6 @@
     <body>
         <?php
         require_once('sql_connection.php');
-        
         if (isset($_POST['ssn'])) {
             $input = $_POST['ssn'];
             echo $_POST['ssn'];
@@ -18,6 +17,29 @@
                 while ($row = mysqli_fetch_assoc($result)) {
                     // Display
                     echo "Course: " . $row["title"] . " - Classroom: " . $row["classroom"] . " Days: " .$row["meeting_days"] ." Time: " .$row["begin_time"] . "-" .$row["end_time"] ."<br>";
+                }
+            } else {
+                echo "No results found.";
+            }
+        }
+
+        if (isset($_POST['cnum'])) {
+            $input = $_POST['cnum'];
+            $input2 = $_POST['snum'];
+            echo $_POST['cnum'];
+
+            $query = "SELECT enrollment.grade, COUNT(*) as studnets
+                        FROM enrollment
+                        WHERE enrollment.cnum = '$input' AND enrollment.snum = '$input2'
+                        GROUP BY enrollment.grade";
+
+            $result = mysqli_query($link, $query);
+
+            if (mysqli_num_rows($result) > 0) {
+                // Loop through each row in the result set
+                while ($row = mysqli_fetch_assoc($result)) {
+                    // Display
+                    echo $row["grade"] .": " .$row["studnets"] ."<br>";
                 }
             } else {
                 echo "No results found.";
