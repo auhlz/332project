@@ -1,8 +1,7 @@
-<html>
-    <body>
-        <?php
-        require_once('sql_connection.php');
 
+<?php
+    require_once('sql_connection.php');
+    if (isset($_POST['cnum'])) {
         echo $_POST['cnum'];
         $input = $_POST['cnum'];
         $query = "SELECT section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time, COUNT(*) AS student_count 
@@ -16,11 +15,16 @@
             // Loop through each row in the result set
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display 
-                echo "Course Number: " . $row["cnum"] . " - classroom: " . $row["classroom"] .  " - meeting_days: " . $row["meeting_days"] . " - Time: " . $row["begin_time"] . "-" . $row["end_time"] . " - Enrolled: " . $row["student_count"] ."<br>";
+                echo "Course Number: " . $row["cnum"] . " - classroom: " . $row["classroom"] .  " - meeting_days: " . 
+                                        $row["meeting_days"] . " - Time: " . $row["begin_time"] . "-" .
+                                        $row["end_time"] . " - Enrolled: " . $row["student_count"] ."<br>";
             }
         } else {
             echo "No results found.";
         }
+    }
+
+    if (isset($_POST['cwid'])) { 
         echo $_POST['cwid'];
         $input = $_POST['cwid'];
         $query = "SELECT course.title, enrollment.grade 
@@ -38,10 +42,12 @@
         } else {
             echo "No results found.";
         }
+    }
 
+?>
 
-        ?>
-        
+<html>
+    <body>  
     <nav>
         <a href="index.html">Back to Home</a>
     </nav>
