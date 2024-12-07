@@ -86,51 +86,71 @@ CREATE TABLE department (
 --student tables-- 
 
 --INSERT INTO student_record VALUES ('cwid','fname','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1231','powder','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1232','jinx','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1233','vi','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1234','caitlyn','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1235','ekko','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1236','jayce','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1237','vander','lname','phone','addy','majordno');
-INSERT INTO student_record VALUES ('1238','isha','lname','phone','addy','majordno');
+INSERT INTO student_record VALUES ('1231','powder','nguyen','123-456-7890','123 Seasame Street, Unicorn Valley','2244');
+INSERT INTO student_record VALUES ('1232','jinx','labitagin','234-567-8910','234 Seasame Street, Unicorn Valley','2244');
+INSERT INTO student_record VALUES ('1233','vi','lim','345-678-9012','345 Seasame Street, Unicorn Valley','2244');
+INSERT INTO student_record VALUES ('1234','caitlyn','pham','456-789-0123','456 Seasame Street, Unicorn Valley','2244');
+INSERT INTO student_record VALUES ('1235','ekko','dang','567-890-1234','567 Seasame Street, Unicorn Valley','3366');
+INSERT INTO student_record VALUES ('1236','jayce','tran','678-901-2345','678 Seasame Street, Unicorn Valley','3366');
+INSERT INTO student_record VALUES ('1237','vander','smith','789-012-3456','789 Seasame Street, Unicorn Valley','3366');
+INSERT INTO student_record VALUES ('1238','isha','washington','012-345-6789','890 Seasame Street, Unicorn Valley','3366');
 
 --department tables--
 
 --INSERT INTO department VALUES ('dnum','dname','phone','location','chairssn');
-INSERT INTO department VALUES ('2244','compsci','951','ecs','2341');
-INSERT INTO department VALUES ('3366','math','401','mccarthy','2342');
+INSERT INTO department VALUES ('2244','compsci','951-123-4567','ecs','2341');
+INSERT INTO department VALUES ('3366','math','401-103-0203','mccarthy','2342');
 
 --professor tables--
-INSERT INTO professor VALUES ('2341','heimerdinger','dr','male','100k','951','123','123 way','fullerton','ca','92592');
-INSERT INTO professor VALUES ('2342','cheawon','dr','female','100k','951','124','124 way','fullerton','ca','92592');
-INSERT INTO professor VALUES ('2343','hanni','dr','female','100k','951','125','125 way','fullerton','ca','92592');
+--INSERT INTO professor VALUES ('ssn', 'prof_name', 'title', 'sex', 'salary', 'area_code', 'phone_num', 'street_addy', 'city', 'prof_state', 'zip' )
+INSERT INTO professor VALUES ('2341','Heimerdinger','Dr','male','100k','951','800-567-9832','123 Mimi Way','Fullerton','CA','92913');
+INSERT INTO professor VALUES ('2342','Cheawon','Dr','female','120k','123','124','124 Lala Land', 'Happy City','CA','92640');
+INSERT INTO professor VALUES ('2343','Hanni','Dr','female','300k','951','125','125 Disney Land', 'Temecula','CA','92592');
 
 --course tables--
 --INSERT INTO course VALUES ('cnum','title','textbook','unit','dnum','preqcnum');
 
-INSERT INTO course VALUES ('9999','database','database textbook','3','2244','none');
-INSERT INTO course VALUES ('9998','algo','algo textbook','3','2244','none');
-INSERT INTO course VALUES ('9997','stats','stats textbook','4','3366','none');
-INSERT INTO course VALUES ('9996','calc','calc textbook','4','3366','none');
+INSERT INTO course VALUES ('332','database','database textbook','3','2244','none');
+INSERT INTO course VALUES ('335','algo','algo textbook','3','2244','none');
+INSERT INTO course VALUES ('338','stats','stats textbook','4','3366','none');
+INSERT INTO course VALUES ('150','calc','calc textbook','4','3366','none');
 
 
 --sections--
 --INSERT INTO section VALUES ('cnum','snum','classroom','meeting days','seats','begintime','endtime','prof');
-INSERT INTO section VALUES ('9999','3','39','sunday','30','10am','12pm','2341');
-INSERT INTO section VALUES ('9999','1','40','monday','35','10am','12pm','2341');
-INSERT INTO section VALUES ('9999','2','41','tuesday','35','10am','12pm','2341');
-INSERT INTO section VALUES ('9998','1','42','wednesday','35','10am','12pm','2342');
-INSERT INTO section VALUES ('9997','1','43','thursday','35','10am','12pm','2342');
-INSERT INTO section VALUES ('9996','1','44','friday','30','10am','12pm','2343');
+INSERT INTO section VALUES ('332','1','39','Sunday','30','10am','12pm','2341');
+INSERT INTO section VALUES ('335','2','40','Monday','35','10am','12pm','2341');
+INSERT INTO section VALUES ('338','3','41','Tuesday','35','10am','12pm','2341');
+INSERT INTO section VALUES ('150','4','42','Wednesday','35','10am','12pm','2342');
+INSERT INTO section VALUES ('332','5','43','Thursday','35','10am','12pm','2342');
+INSERT INTO section VALUES ('150','6','44','Friday','30','10am','12pm','2343');
 
 --enrollment record--
 
 --INSERT INTO enrollment VALUES ('cnum','snum','cwid','grade');
-INSERT INTO enrollment VALUES ('9999','3','1231','a');
-INSERT INTO enrollment VALUES ('9999','3','1233','a');
-INSERT INTO enrollment VALUES ('9999','3','1234','a');
-INSERT INTO enrollment VALUES ('9998','1','1232','b');
+INSERT INTO enrollment VALUES ('332','1','1231','A');
+INSERT INTO enrollment VALUES ('332','1','1232','A');
+INSERT INTO enrollment VALUES ('332','1','1234','A');
+INSERT INTO enrollment VALUES ('332','1','1233','C-');
+INSERT INTO enrollment VALUES ('332','1','1235','C+');
+
+INSERT INTO enrollment VALUES ('335','2','1231','A');
+INSERT INTO enrollment VALUES ('335','2','1232','A');
+INSERT INTO enrollment VALUES ('335','2','1236','A+');
+INSERT INTO enrollment VALUES ('335','2','1237','B-');
+INSERT INTO enrollment VALUES ('335','2','1238','B');
+
+INSERT INTO enrollment VALUES ('338','3','1231','C');
+INSERT INTO enrollment VALUES ('338','3','1232','C');
+INSERT INTO enrollment VALUES ('338','3','1233','D');
+INSERT INTO enrollment VALUES ('338','3','1234','D');
+INSERT INTO enrollment VALUES ('338','3','1235','A+');
+
+INSERT INTO enrollment VALUES ('332','5','1237','A');
+INSERT INTO enrollment VALUES ('332','5','1238','A');
+INSERT INTO enrollment VALUES ('150','6','1237','B');
+INSERT INTO enrollment VALUES ('150','6','1238','B-');
+INSERT INTO enrollment VALUES ('150','6','1232','B-');
 
 --test for query a of student--
 
@@ -142,3 +162,9 @@ SELECT course.title, enrollment.grade FROM student_record, course, enrollment WH
 --test query for a of prof--
 
 SELECT course.title, section.classroom, section.meeting_days, section.begin_time, section.end_time FROM course, section WHERE section.prof_ssn = '2341' and section.cnum=course.cnum;
+
+--test query for b of prof--
+SELECT enrollment.grade, COUNT(*) as studnets
+FROM enrollment
+WHERE enrollment.cnum = '332' AND enrollment.snum = '1'
+GROUP BY enrollment.grade;

@@ -3,7 +3,6 @@
     require_once('sql_connection.php');
     if (isset($_POST['ssn'])) {
         $input = $_POST['ssn'];
-        echo $_POST['ssn'];
 
         $query = "SELECT course.title, section.classroom, section.meeting_days, section.begin_time, section.end_time 
                     FROM course, section 
