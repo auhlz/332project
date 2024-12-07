@@ -2,20 +2,20 @@
 <?php
     require_once('sql_connection.php');
     if (isset($_POST['cnum'])) {
-        echo $_POST['cnum'];
+
         $input = $_POST['cnum'];
-        $query = "SELECT section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time, COUNT(*) AS student_count 
-                    FROM section, enrollment WHERE section.cnum = '$input' AND enrollment.snum = section.snum 
-                    GROUP BY section.cnum, section.classroom, section.meeting_days, section.begin_time, section.end_time";
+        $query = "SELECT section.cnum, section.snum,section.classroom, section.meeting_days, section.begin_time, section.end_time, COUNT(*) AS student_count 
+                    FROM section, enrollment 
+                    WHERE section.cnum = '$input' AND enrollment.snum = section.snum 
+                    GROUP BY section.snum, section.classroom, section.meeting_days, section.begin_time, section.end_time";
 
-
-        $result = mysqli_query($link, $query);
+        $result = $link->query($query);
         
-        if (mysqli_num_rows($result) > 0) {
+        if ($result->num_rows > 0) {
             // Loop through each row in the result set
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $result->fetch_assoc()) {
                 // Display 
-                echo "Course Number: " . $row["cnum"] . " - classroom: " . $row["classroom"] .  " - meeting_days: " . 
+                echo "Section Number: " . $row["snum"] . " - Classroom: " . $row["classroom"] .  " - Meeting Days: " . 
                                         $row["meeting_days"] . " - Time: " . $row["begin_time"] . "-" .
                                         $row["end_time"] . " - Enrolled: " . $row["student_count"] ."<br>";
             }
@@ -24,17 +24,19 @@
         }
     }
 
+    // Second query
     if (isset($_POST['cwid'])) { 
-        echo $_POST['cwid'];
+
         $input = $_POST['cwid'];
         $query = "SELECT course.title, enrollment.grade 
                     FROM student_record, course, enrollment 
                     WHERE student_record.cwid = '$input' and student_record.cwid = enrollment.cwid and enrollment.cnum = course.cnum";
 
-        $result = mysqli_query($link, $query);
+        $result = $link->query($query);
 
-        if (mysqli_num_rows($result) > 0) {
+        if ($row = $result->fetch_assoc()) {
             // Loop through each row in the result set
+            echo "Courses Taken:<br>";
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display 
                 echo "Course: " . $row["title"] . " - Grade: " . $row["grade"] . "<br>";
@@ -43,13 +45,16 @@
             echo "No results found.";
         }
     }
-
+    $result->free_result();
+    $link->close();
 ?>
 
 <html>
-    <body>  
+    <body>
+  
     <nav>
         <a href="index.html">Back to Home</a>
     </nav>
+
     </body>
 </html>
