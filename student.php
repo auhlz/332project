@@ -1,6 +1,7 @@
-
 <?php
+    // Gets connection to database
     require_once('sql_connection.php');
+    // If cnum is set run student A query
     if (isset($_POST['cnum'])) {
 
         $input = $_POST['cnum'];
@@ -24,7 +25,7 @@
         }
     }
 
-    // Second query
+    // If cwid is set run student B query
     if (isset($_POST['cwid'])) { 
 
         $input = $_POST['cwid'];
@@ -34,10 +35,10 @@
 
         $result = $link->query($query);
 
-        if ($row = $result->fetch_assoc()) {
+        if ($result->num_rows > 0) {
             // Loop through each row in the result set
             echo "Courses Taken:<br>";
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = $result->fetch_assoc()) {
                 // Display 
                 echo "Course: " . $row["title"] . " - Grade: " . $row["grade"] . "<br>";
             }

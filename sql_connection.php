@@ -1,4 +1,5 @@
 <?php
+// Gets a connection to the database
 const DB_USER = 'root';
 const DB_PASSWORD = '';
 const DB_HOST = 'localhost';
