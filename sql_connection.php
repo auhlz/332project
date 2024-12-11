@@ -1,11 +1,11 @@
 <?php
 // Gets a connection to the database
-const DB_USER = 'root';
-const DB_PASSWORD = '';
-const DB_HOST = 'localhost';
-const DB_NAME = 'mydb';
+const username = '';
+const password = '';
+const hostname = '';
+const database_name = '';
 
-$link = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+$link = mysqli_connect(hostname, username, password, database_name);
 if (!$link) {
     die("Unable to connect to database: " . mysqli_connect_error());
 }
